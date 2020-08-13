@@ -15,7 +15,7 @@
 
 ### Association
 - has_many :sales
-- has_many :buys_date
+- has_many :buys_dates
 
 ## sales テーブル
 
@@ -63,6 +63,6 @@
 
 
 ### Association
-- belongs_to :sales
-- belongs_to :buys
-- belongs_to :users
+- belongs_to :sale
+- has_one :buy
+- belongs_to :user

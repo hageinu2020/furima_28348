@@ -1,24 +1,68 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column      | Type    | Options     |
+| ----------- | ------- | ----------- |
+| family-name | string  | null: false |
+| first-name  | string  | null: false |
+| email       | string  | null: false |
+| password    | string  | null: false |
+| nickname    | string  | null: false |
+| birthday    | date    | null: false |
+| family-kana | string  | null: false |
+| first-kana  | string  | null: false |
 
-* Ruby version
+### Association
+- has_many :sales
+- has_many :buys_dates
 
-* System dependencies
+## sales テーブル
 
-* Configuration
+|Column   | Type       |Options                        |
+| ------- | ---------- | ----------------------------- |
+| text    | string     |null: false                    |
+| pict    | string     |null: false                    |
+| user    | references |null: false, foreign_key: true |
+| price   | integer    |null: false                    |
+| name    | string     |null: false                    |
+| genre   | integer    |null: false                    |
+| status  | integer    |null: false                    |
+| area    | integer    |null: false                    |
+| process | integer    |null: false                    |
+| fee     | integer    |null: false                    |
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
+### Association
+- belongs_to :user
+- has_one :buys_date
 
-* Services (job queues, cache servers, search engines, etc.)
+## buys テーブル
 
-* Deployment instructions
+|Column    | Type      |Options                         
+| -------- | --------- | ----------------------------- |
+| code     | string    |null: false                    |
+| pref     | integer   |null: false                    |
+| city     | string    |null: false                    |
+| address  | string    |null: false                    |
+| building | string    |                               |
+| tel      | string    |null: false                    |
+| buy_date | references|null: false, foreign_key: true |
 
-* ...
+
+### Association
+- belongs_to :buys_date
+
+## buys_date テーブル
+
+| Column | Type       | Options                        |
+| -----  | -------    | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| sales  | references | null: false, foreign_key: true |
+
+
+### Association
+- belongs_to :sale
+- has_one :buy
+- belongs_to :user

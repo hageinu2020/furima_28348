@@ -21,13 +21,16 @@
 
 |Column   | Type       |Options                        |
 | ------- | ---------- | ----------------------------- |
-| text    | text       |null: false                    |
-| pict    | img        |null: false                    |
+| text    | string     |null: false                    |
+| pict    | string     |null: false                    |
 | user    | references |null: false, foreign_key: true |
 | price   | integer    |null: false                    |
 | name    | string     |null: false                    |
 | genre   | integer    |null: false                    |
 | status  | integer    |null: false                    |
+| area    | integer    |null: false                    |
+| process | integer    |null: false                    |
+| fee     | integer    |null: false                    |
 
 
 
@@ -53,11 +56,11 @@
 
 ## buys_date テーブル
 
-| Column  | Type    | Options     |
-| ------- | ------- | ----------- |
-| area    | integer | null: false |
-| process | integer | null: false |
-| fee     | integer | null: false |
+| Column | Type       | Options                        |
+| -----  | -------    | ------------------------------ |
+| user   | references | null: false, foreign_key: true |
+| sales  | references | null: false, foreign_key: true |
+
 
 ### Association
 - belongs_to :sales

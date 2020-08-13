@@ -26,11 +26,9 @@
 | user    | references |null: false, foreign_key: true |
 | price   | integer    |null: false                    |
 | name    | string     |null: false                    |
-| genre   | string     |null: false                    |
-| status  | string     |null: false                    |
-| fee     | string     |null: false                    |
-| area    | string     |null: false                    |
-| process | string     |null: false                    |
+| genre   | integer    |null: false                    |
+| status  | integer    |null: false                    |
+
 
 
 ### Association
@@ -42,6 +40,7 @@
 |Column   | Type      |Options                         
 | ------- | --------- | ----------------------------- |
 | code    | integer   | null: false                   |
+| pref    | integer   | null: false                   |
 | city    | string    | null: false                   |
 | address | string    | null: false                   |
 | building| string    |                               |
@@ -50,5 +49,16 @@
 
 
 ### Association
-- belongs_to :user
+- belongs_to :buys_date
+
+## buys_date テーブル
+
+| Column  | Type    | Options     |
+| ------- | ------- | ----------- |
+| area    | integer | null: false |
+| process | integer | null: false |
+| fee     | integer | null: false |
+
+### Association
 - belongs_to :sales
+- belongs_to :buys

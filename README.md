@@ -15,7 +15,7 @@
 
 ### Association
 - has_many :sales
-- has_many :buys
+- has_many :buys_date
 
 ## sales テーブル
 
@@ -36,19 +36,19 @@
 
 ### Association
 - belongs_to :user
-- belongs_to :buys
+- has_one :buys_date
 
 ## buys テーブル
 
-|Column   | Type      |Options                         
-| ------- | --------- | ----------------------------- |
-| code    | integer   | null: false                   |
-| pref    | integer   | null: false                   |
-| city    | string    | null: false                   |
-| address | string    | null: false                   |
-| building| string    |                               |
-| tel     | string    | null: false                   | 
-| sale    | references| null: false, foreign_key: true| 
+|Column    | Type      |Options                         
+| -------- | --------- | ----------------------------- |
+| code     | string    |null: false                    |
+| pref     | integer   |null: false                    |
+| city     | string    |null: false                    |
+| address  | string    |null: false                    |
+| building | string    |                               |
+| tel      | string    |null: false                    |
+| buy_date | references|null: false, foreign_key: true |
 
 
 ### Association
@@ -65,3 +65,4 @@
 ### Association
 - belongs_to :sales
 - belongs_to :buys
+- belongs_to :users

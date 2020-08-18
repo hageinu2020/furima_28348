@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
-root to: 'sales#index'  
+  devise_for :users
+root to: 'sales#index' 
+
+resource :sales, only: [:index, :new, :create]
 
 end

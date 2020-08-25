@@ -12,7 +12,7 @@ class SalesController < ApplicationController
   def create
     @sale = Sale.new(sale_params)
     if @sale.save
-      redirect_to controller: :products, action: :index
+      redirect_to root_path
     else
       render :new
     end
@@ -25,6 +25,6 @@ class SalesController < ApplicationController
   private
 
   def sale_params
-    params.permit(:name, :text, :pic, :price, :genre_id, :status_id, :fee_id, :area_id, :day_id, :image).merge(user_id: current_user.id)
+    params.require(:sale).permit(:name, :text, :pic, :price, :genre_id, :status_id, :fee_id, :area_id, :day_id, :image).merge(user_id: current_user.id)
   end
 end

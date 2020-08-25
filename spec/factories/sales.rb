@@ -3,11 +3,11 @@ FactoryBot.define do
     name                        { 'abc' }
     text                        { 'abc' }
     price                       { 400 }
-    genre_id                       { 1 }
-    status_id                      { 1 }
-    fee_id                         { 1 }
-    area_id                        { 1 }
-    day_id                         { 1 }
+    genre_id                       { 2 }
+    status_id                      { 2 }
+    fee_id                         { 2 }
+    area_id                        { 2 }
+    day_id                         { 2 }
     association :user
   end
 end

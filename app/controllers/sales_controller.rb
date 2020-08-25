@@ -10,10 +10,9 @@ class SalesController < ApplicationController
   end
 
   def create
-    # binding.pry
     @sale = Sale.new(sale_params)
     if @sale.save
-      redirect_to root_path
+      redirect_to controller: :products, action: :index
     else
       render :new
     end

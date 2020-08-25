@@ -1,5 +1,5 @@
 class SalesController < ApplicationController
-  before_action :move_to_index, except:[:index]
+  before_action :move_to_index, except: [:index]
 
   def index
     @sales = Sale.all.order('created_at DESC')
@@ -10,7 +10,7 @@ class SalesController < ApplicationController
   end
 
   def create
-    #binding.pry
+    # binding.pry
     @sale = Sale.new(sale_params)
     if @sale.save
       redirect_to root_path
@@ -20,12 +20,11 @@ class SalesController < ApplicationController
   end
 
   def move_to_index
-    unless user_signed_in?
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless user_signed_in?
   end
 
   private
+
   def sale_params
     params.permit(:name, :text, :pic, :price, :genre_id, :status_id, :fee_id, :area_id, :day_id, :image).merge(user_id: current_user.id)
   end

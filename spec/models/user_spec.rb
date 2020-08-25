@@ -51,7 +51,7 @@ describe User do
       it 'emailに@がないと登録できない' do
         @user.email = 'abcdi'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it '重複したemailが存在する場合登録できない' do
         @user.save
@@ -116,7 +116,7 @@ describe User do
       it 'family_kanaが全角カタカナでなければ登録できない' do
         @user.family_kana = 'abc'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family kana には全角カタカナを使用してください")
+        expect(@user.errors.full_messages).to include('Family kana には全角カタカナを使用してください')
       end
       it 'first_kanaが空では登録できない' do
         @user.first_kana = ''
@@ -126,7 +126,7 @@ describe User do
       it 'first_kanaが全角カタカナでなければ登録できない' do
         @user.first_kana = 'abc'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First kana には全角カタカナを使用してください")
+        expect(@user.errors.full_messages).to include('First kana には全角カタカナを使用してください')
       end
       it 'birthdayが空では登録できない' do
         binding.pry

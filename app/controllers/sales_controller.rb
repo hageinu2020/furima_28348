@@ -19,8 +19,7 @@ class SalesController < ApplicationController
     end
   end
 
-  def show
-  end
+
 
   def destroy
     sale = Sale.find(params[:id])
@@ -29,9 +28,6 @@ class SalesController < ApplicationController
     else
       render :show
     end
-  end
-
-  def edit
   end
 
   def update

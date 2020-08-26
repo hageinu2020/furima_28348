@@ -1,5 +1,5 @@
 class SalesController < ApplicationController
-  before_action :move_to_index, except: [:index]
+  before_action :move_to_index, except: [:index, :show]
 
   def index
     @sales = Sale.all.order('created_at DESC')
@@ -18,8 +18,12 @@ class SalesController < ApplicationController
     end
   end
 
+  def show
+    @sale = Sale.find(params[:id])
+  end
+
   def move_to_index
-    redirect_to action: :index unless user_signed_in?
+    redirect_to action: :index unless user_signed_in?()
   end
 
   private

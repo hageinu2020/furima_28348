@@ -2,6 +2,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 root to: 'sales#index' 
-resources :sales, only: [:index, :new, :create]
+resources :sales, only: [:index, :new, :create, :show]
 
 end

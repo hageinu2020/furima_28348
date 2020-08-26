@@ -23,6 +23,7 @@ class SalesController < ApplicationController
     
   end
 
+
   def destroy
     sale = Sale.find(params[:id])
     if sale.destroy
@@ -31,7 +32,19 @@ class SalesController < ApplicationController
       render :show
     end
   end
-     
+
+  def edit
+    
+  end
+
+  def update
+    @sale  = Sale.find(params[:id])
+    if @sale.update(sale_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
 
   def move_to_index
     redirect_to action: :index unless user_signed_in?()

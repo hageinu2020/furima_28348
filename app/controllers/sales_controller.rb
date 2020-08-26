@@ -35,4 +35,5 @@ class SalesController < ApplicationController
 
   def sale_select
     @sale = Sale.find(params[:id])
+  end
 end

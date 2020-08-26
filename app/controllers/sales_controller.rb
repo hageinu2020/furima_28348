@@ -1,6 +1,6 @@
 class SalesController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
-  before_action :sale_select,[:show]
+  before_action :sale_select, except: [:index,:create]
 
   def index
     @sales = Sale.all.order('created_at DESC')

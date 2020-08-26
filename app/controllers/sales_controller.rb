@@ -1,5 +1,6 @@
 class SalesController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
+  before_action :sale_select,[:show]
 
   def index
     @sales = Sale.all.order('created_at DESC')
@@ -19,7 +20,7 @@ class SalesController < ApplicationController
   end
 
   def show
-    @sale = Sale.find(params[:id])
+    
   end
 
   def move_to_index
@@ -31,4 +32,7 @@ class SalesController < ApplicationController
   def sale_params
     params.require(:sale).permit(:name, :text, :pic, :price, :genre_id, :status_id, :fee_id, :area_id, :day_id, :image).merge(user_id: current_user.id)
   end
+
+  def sale_select
+    @sale = Sale.find(params[:id])
 end

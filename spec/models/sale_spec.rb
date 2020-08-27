@@ -58,7 +58,7 @@ RSpec.describe Sale do
       it 'カテゴリーが---だと投稿できない' do
         @sale.genre_id = '0'
         @sale.valid?
-        expect(@sale.errors.full_messages).to include("Genre must be other than 0")
+        expect(@sale.errors.full_messages).to include('Genre must be other than 0')
       end
 
       it '状態が選択されていないと投稿できない' do
@@ -70,7 +70,7 @@ RSpec.describe Sale do
       it '状態が---だと投稿できない' do
         @sale.status_id = '0'
         @sale.valid?
-        expect(@sale.errors.full_messages).to include("Status must be other than 0")
+        expect(@sale.errors.full_messages).to include('Status must be other than 0')
       end
 
       it '配送料が選択されていないと投稿できない' do
@@ -82,7 +82,7 @@ RSpec.describe Sale do
       it '配送料が---だと投稿できない' do
         @sale.fee_id = '0'
         @sale.valid?
-        expect(@sale.errors.full_messages).to include("Fee must be other than 0")
+        expect(@sale.errors.full_messages).to include('Fee must be other than 0')
       end
 
       it '発送地域が選択されていないと投稿できない' do
@@ -94,7 +94,7 @@ RSpec.describe Sale do
       it '発送地域が---だと投稿できない' do
         @sale.area_id = '0'
         @sale.valid?
-        expect(@sale.errors.full_messages).to include("Area must be other than 0")
+        expect(@sale.errors.full_messages).to include('Area must be other than 0')
       end
 
       it '日数が選択されていないと投稿できない' do
@@ -106,7 +106,7 @@ RSpec.describe Sale do
       it '日数が---だと投稿できない' do
         @sale.day_id = '0'
         @sale.valid?
-        expect(@sale.errors.full_messages).to include("Day must be other than 0")
+        expect(@sale.errors.full_messages).to include('Day must be other than 0')
       end
 
       it '価格が入力されていないと投稿できない' do

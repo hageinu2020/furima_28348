@@ -10,6 +10,17 @@ describe Buy do
       it 'code、area_id,city,address、tel、tokenがあれば購入できる' do
         expect(@buy).to be_valid
       end
+
+      it '郵便番号にハイフンがあれば購入できる' do
+        @buy.code = '123-4567'
+        expect(@buy).to be_valid
+      end
+
+      it '電話番号にハイフンがなく、11桁内であれば登録ができる' do
+        @buy.tel = '08012321132'
+        expect(@buy).to be_valid
+      end
+
     end
 
     context '商品の購入が上手くいかない時' do
@@ -23,6 +34,12 @@ describe Buy do
         @buy.code = nil
         @buy.valid?
         expect(@buy.errors.full_messages).to include('Code is invalid. Include hyphen(-)')
+      end
+
+      it 'codeにハイフンが入っていないと購入できない' do
+        @buy.code = '1234567'
+        @buy.valid?
+        expect(@buy.errors.full_messages).to include('Code is invalid. Include hyphen(-)' )
       end
 
       it 'area_idが選択されていないと購入できない' do
@@ -45,6 +62,18 @@ describe Buy do
 
       it 'telがないと購入できない' do
         @buy.tel = ''
+        @buy.valid?
+        expect(@buy.errors.full_messages).to include('Tel にはハイフンを使用しないでください。')
+      end
+
+      it 'telにハイフンが入っていると購入できない' do
+        @buy.tel = '080-1234-5678'
+        @buy.valid?
+        expect(@buy.errors.full_messages).to include('Tel にはハイフンを使用しないでください。')
+      end
+
+      it 'telの桁数が11桁以上だと購入できない' do
+        @buy.tel = '123456789123'
         @buy.valid?
         expect(@buy.errors.full_messages).to include('Tel にはハイフンを使用しないでください。')
       end

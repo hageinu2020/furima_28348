@@ -10,7 +10,9 @@
       <%= image_tag @sale.image, class:"item-box-img" %>
       <%# 商品が売れている場合は、sold outの表示をしましょう。 %>
       <div class='sold-out'>
+      <% if @sale.buys_date.present? %>
         <span>Sold Out!!</span>
+      <% end %>
       </div>
       <%# //商品が売れている場合は、sold outの表示をしましょう。 %>
     </div>
@@ -30,7 +32,9 @@
     <%= link_to '削除', sale_path(@sale.id), method: :delete, class:'item-destroy' %>
     <%# 商品が売れていない場合はこちらを表示しましょう %>
     <% else %>
-    <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
+    <% if @sale.buys_date == nil %>
+    <%= link_to '購入画面に進む', sale_buys_path(@sale.id), class:"item-red-btn"%>
+    <% end %>
     <%# //商品が売れていない場合はこちらを表示しましょう %>
     <% end %>
     <%# //ログインしていて、なおかつ、ログインしているユーザと出品しているユーザが同一人物でないとき表示しましょう。 %>

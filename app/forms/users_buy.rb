@@ -10,13 +10,13 @@ class UsersBuy
   VALID_PHONE_REGEX = /\A\d{10}$|^\d{11}\z/.freeze
   validates_format_of :tel, with: VALID_PHONE_REGEX, message: 'にはハイフンを使用しないでください。'
   # カード情報のバリデーション
-  validates :token, presence: true
   # 市町村のバリデーション
-  validates :city, presence: true
   # 住所のバリデーション
-  validates :address, presence: true
+  with_options presence: true do
+  validates :token, :city, :address
+  end
+
   def save
-    # binding.pry
     buydate = BuysDate.create(user_id: user_id, sale_id: sale_id)
     Buy.create(code: code, area_id: area_id, city: city, address: address, building: building, tel: tel, buys_date_id: buydate.id)
   end

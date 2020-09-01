@@ -1,15 +1,13 @@
 class BuysController < ApplicationController
   before_action :authenticate_user!
+  before_action :buy_select
   def index
-    @sale = Sale.find(params[:sale_id])
     redirect_to root_path if user_signed_in? && current_user.id == @sale.user_id || @sale.buys_date.present?
   end
 
   def create
     @sale = Sale.find(params[:sale_id])
-    # @user = User.find(params[:user_id])
     @buy = UsersBuy.new(buy_params)
-    # binding.pry
     if @buy.valid?
       pay_item
       @buy.save
@@ -26,11 +24,15 @@ class BuysController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = 'sk_test_526b279e55f52726c1cd8752' # PAY.JPテスト秘密鍵
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"] # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
       amount: @sale[:price], # 商品の値段
       card: buy_params[:token], # カードトークン
       currency: 'jpy'                 # 通貨の種類(日本円)
     )
+  end
+
+  def buy_select
+    @sale = Sale.find(params[:sale_id])
   end
 end

@@ -6,7 +6,6 @@ class BuysController < ApplicationController
   end
 
   def create
-    @sale = Sale.find(params[:sale_id])
     @buy = UsersBuy.new(buy_params)
     if @buy.valid?
       pay_item

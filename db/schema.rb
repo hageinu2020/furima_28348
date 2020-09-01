@@ -35,23 +35,23 @@ ActiveRecord::Schema.define(version: 2020_08_27_030125) do
 
   create_table "buys", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "code", null: false
-    t.integer "pref", null: false
+    t.integer "area_id", null: false
     t.string "city", null: false
     t.string "address", null: false
     t.string "building"
     t.string "tel", null: false
-    t.bigint "buys_dates_id", null: false
+    t.bigint "buys_date_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["buys_dates_id"], name: "index_buys_on_buys_dates_id"
+    t.index ["buys_date_id"], name: "index_buys_on_buys_date_id"
   end
 
   create_table "buys_dates", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "sales_id", null: false
+    t.bigint "sale_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["sales_id"], name: "index_buys_dates_on_sales_id"
+    t.index ["sale_id"], name: "index_buys_dates_on_sale_id"
     t.index ["user_id"], name: "index_buys_dates_on_user_id"
   end
 
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2020_08_27_030125) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "buys", "buys_dates", column: "buys_dates_id"
-  add_foreign_key "buys_dates", "sales", column: "sales_id"
+  add_foreign_key "buys", "buys_dates"
+  add_foreign_key "buys_dates", "sales"
   add_foreign_key "buys_dates", "users"
 end

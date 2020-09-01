@@ -12,14 +12,13 @@ class SalesController < ApplicationController
 
   def create
     @sale = Sale.new(sale_params)
-    if @sale.save
+    # binding.pry
+    if @sale.save!
       redirect_to root_path
     else
       render :new
     end
   end
-
-
 
   def destroy
     sale = Sale.find(params[:id])

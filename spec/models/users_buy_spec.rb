@@ -21,6 +21,10 @@ describe Buy do
         expect(@buy).to be_valid
       end
 
+      it '建物名がなくても購入できる' do
+        @buy.building = ''
+        expect(@buy).to be_valid
+      end
     end
 
     context '商品の購入が上手くいかない時' do

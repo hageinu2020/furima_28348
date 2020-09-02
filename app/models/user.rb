@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :sales
   has_many :buys_dates
 
-  validates :nickname, presence: true
+  validates :nickname, :birthday, presence: true
 
   NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/.freeze
   validates_format_of :first_name, with: NAME_REGEX, message: 'には全角文字を使用してください'
@@ -18,6 +18,4 @@ class User < ApplicationRecord
 
   PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
   validates_format_of :password, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
-  validates_format_of :password_confirmation, with: PASSWORD_REGEX, message: 'には英字と数字の両方を含めて設定してください'
-  validates :birthday, presence: true
 end

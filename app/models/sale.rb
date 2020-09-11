@@ -1,5 +1,5 @@
 class Sale < ApplicationRecord
-  has_one_attached :image
+  has_many_attached :image
   belongs_to :user
   has_one :buys_date
   extend ActiveHash::Associations::ActiveRecordExtensions

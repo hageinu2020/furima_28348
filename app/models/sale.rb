@@ -1,5 +1,5 @@
 class Sale < ApplicationRecord
-  has_many_attached :image
+  has_one_attached :image
   belongs_to :user
   has_one :buys_date
   extend ActiveHash::Associations::ActiveRecordExtensions
@@ -8,6 +8,7 @@ class Sale < ApplicationRecord
   belongs_to_active_hash :fee
   belongs_to_active_hash :area
   belongs_to_active_hash :day
+
 
   # 空の投稿を保存できないようにする
   validates :name, :text, :genre_id, :status_id, :fee_id, :area_id, :day_id, :image, :price, presence: true
